@@ -1,62 +1,168 @@
 # Multi-Agent Web Research Team 🤖🔍
 
-A multi-agent AI system built with **LangGraph** for autonomous web research, information synthesis, and report generation.
+[![Python](https://img.shields.io/badge/Python-3.9+-blue.svg)](https://www.python.org/)
+[![LangGraph](https://img.shields.io/badge/Orchestration-LangGraph-orange.svg)](https://langchain-ai.github.io/langgraph/)
+[![FastAPI](https://img.shields.io/badge/Backend-FastAPI-009688.svg)](https://fastapi.tiangolo.com/)
+[![React](https://img.shields.io/badge/Frontend-React%20%2B%20Vite%20%2B%20Tailwind-61DAFB.svg)](https://vitejs.dev/)
+[![Groq](https://img.shields.io/badge/LLM-Groq%20Cloud%20%7C%20OpenAI-F55036.svg)](https://groq.com/)
 
-## 🗂️ Project Structure
+An autonomous, API-driven Multi-Agent Research Team that collaborates to browse the live web, debate topics from opposing perspectives, and synthesize comprehensive publication-ready Markdown research reports.
+
+---
+
+## 🌟 The Multi-Agent Architecture
 
 ```
-Multi-Agent Web Research Team/
-├── agents/              # Individual agent definitions
-│   ├── __init__.py
-│   ├── researcher.py    # Web search & data collection agent
-│   ├── analyst.py       # Information synthesis agent
-│   └── writer.py        # Report generation agent
-├── tools/               # Custom tools for agents
-│   ├── __init__.py
-│   ├── web_search.py    # Tavily / DuckDuckGo search
-│   └── scraper.py       # Web page scraping
-├── graph/               # LangGraph workflow definitions
-│   ├── __init__.py
-│   └── research_graph.py
-├── utils/               # Shared utilities
-│   ├── __init__.py
-│   └── config.py
-├── tests/               # Unit and integration tests
-├── .env.example         # API key template → copy to .env
-├── requirements.txt
-└── main.py              # Entry point
+                                  [ User Query ]
+                                        │
+                                        ▼
+               ┌──────────────────────────────────────────────────┐
+               │         LangGraph Orchestration Pipeline         │
+               │                                                  │
+               │   1. 🔍 Researcher Agent                         │
+               │      • Breaks down topic into targeted queries   │
+               │      • Scrapes DuckDuckGo live web & extracts   │
+               │        citations, numbers, and key facts         │
+               │                        │                         │
+               │                        ▼                         │
+               │   2. ⚡ Debate Engine                            │
+               │      • Advocate (Opportunities & Breakthroughs)  │
+               │      • Skeptic (Blind spots, Risks & Bottlenecks)│
+               │      • Pragmatist (Consensus & Trade-offs)       │
+               │                        │                         │
+               │                        ▼                         │
+               │   3. ✍️ Writer Agent                            │
+               │      • Comprehensive publication report drafter  │
+               │      • Executive summary, tables, references     │
+               │                        │                         │
+               │                        ▼                         │
+               │   4. 🧐 Reviewer Agent (Managing Editor)         │
+               │      • Fact-checker & Rigor evaluator (Score/100)│
+               │      • Loops back for revision if score < 80     │
+               │                        │                         │
+               │                        ▼                         │
+               │   5. 🏆 Final Polish & Citation Generator        │
+               └──────────────────────────────────────────────────┘
+                                        │
+                   ┌────────────────────┴────────────────────┐
+                   ▼                                         ▼
+         🖥️ Modern Web UI (SSE Stream)            💻 Terminal CLI Mode
 ```
+
+---
 
 ## 🚀 Quick Start
 
+### 1. Clone and Setup Environment
+
 ```bash
-# 1. Activate the virtual environment
-source .venv/bin/activate      # macOS / Linux
-# .venv\Scripts\activate       # Windows
+git clone https://github.com/Ashik150/Multi-Agent-Web-Research-Team.git
+cd "Multi-Agent Web Research Team"
 
-# 2. Install dependencies
-pip install -r requirements.txt
-
-# 3. Copy and fill in your API keys
-cp .env.example .env
-
-# 4. Run the research agent
-python main.py
+# Activate Virtual Environment
+source .venv/bin/activate
 ```
 
-## 🔑 Required API Keys
+### 2. Configure API Keys
 
-| Key | Used For | Get It |
-|-----|----------|--------|
-| `OPENAI_API_KEY` | LLM backbone | [platform.openai.com](https://platform.openai.com) |
-| `TAVILY_API_KEY` | Web search | [tavily.com](https://tavily.com) |
-| `LANGCHAIN_API_KEY` | LangSmith tracing *(optional)* | [smith.langchain.com](https://smith.langchain.com) |
+```bash
+cp .env.example .env
+```
+Edit `.env` and add your **Groq API Key** (Free & Ultra Fast at [console.groq.com](https://console.groq.com)) or **OpenAI API Key**:
+```ini
+GROQ_API_KEY=gsk_your_groq_key_here
+GROQ_MODEL=llama-3.3-70b-versatile
+```
 
-## 🧩 Tech Stack
+> **Note:** Live web search via DuckDuckGo works **100% free with zero API keys required**.
 
-- **[LangGraph](https://langchain-ai.github.io/langgraph/)** — stateful multi-agent orchestration
-- **[LangChain](https://python.langchain.com/)** — LLM tools, chains, and memory
-- **[Tavily](https://tavily.com/)** — real-time web search API for agents
-- **[OpenAI](https://openai.com/)** — GPT-4o as the agent LLM
-- **[Rich](https://rich.readthedocs.io/)** — beautiful terminal output
-- **[Loguru](https://loguru.readthedocs.io/)** — structured logging
+---
+
+## 🎯 Running the Project
+
+### Option A: Launch Full-Stack Web App (Recommended)
+
+```bash
+python main.py --server
+```
+Visit **[http://localhost:8000](http://localhost:8000)** in your browser!
+
+Features of the Web Dashboard:
+- ⚡ **Live Real-time SSE Streaming**: Watch each agent think, search the web, and deliberate live.
+- 💬 **Interactive Debate Feed**: See the Advocate vs. Skeptic personas debate the topic before drafting.
+- 📊 **Step Tracker**: Visual pipeline progress indicators.
+- 📝 **Report Viewer**: Markdown renderer, copy to clipboard, download `.md`, print/PDF export, and source links.
+- ⚙️ **In-App Model Switcher**: Swap between Groq (LLaMA 3.3 70B), OpenAI (GPT-4o), Claude, or Gemini on the fly.
+- 🕒 **Research History**: Saved research sessions in local storage.
+
+### Option B: Run via CLI
+
+```bash
+# Interactive Prompt
+python main.py
+
+# Direct Query
+python main.py --query "Quantum Computing breakthroughs in 2026"
+
+# Specify Provider
+python main.py --query "Solid State Batteries commercialization" --provider groq --model llama-3.3-70b-versatile
+```
+
+---
+
+## 📁 Project Structure
+
+```
+Multi-Agent Web Research Team/
+├── agents/                      # AI Agent implementations
+│   ├── researcher.py            # Web search, live scraping & fact synthesis
+│   ├── debater.py               # Multi-perspective debate engine
+│   ├── writer.py                # Publication Markdown report writer
+│   └── reviewer.py              # Editorial review, scoring & polish
+├── tools/                       # Live tools
+│   ├── web_search.py            # DuckDuckGo Lite & Tavily search
+│   └── scraper.py               # Async webpage scraper & text cleaner
+├── graph/                       # LangGraph orchestration
+│   └── research_graph.py        # StateGraph with conditional review loop
+├── utils/
+│   ├── llm.py                   # Unified LLM factory (Groq, OpenAI, Gemini, Anthropic)
+│   └── config.py                # Environment configuration
+├── frontend/                    # Modern React + Vite + Tailwind dashboard
+│   ├── src/
+│   │   ├── components/
+│   │   │   ├── Header.jsx
+│   │   │   ├── AgentStatusCards.jsx
+│   │   │   ├── PipelineTracker.jsx
+│   │   │   ├── DebateFeed.jsx
+│   │   │   ├── ReportViewer.jsx
+│   │   │   ├── SettingsModal.jsx
+│   │   │   └── HistoryDrawer.jsx
+│   │   ├── App.jsx
+│   │   └── index.css
+│   ├── package.json
+│   └── vite.config.js
+├── tests/                       # Unit tests
+│   └── test_pipeline.py
+├── server.py                    # FastAPI server with SSE streaming
+├── main.py                      # Unified CLI & server launcher
+├── requirements.txt             # Python dependencies
+└── pyproject.toml               # Project config & linters
+```
+
+---
+
+## 🧪 Testing
+
+Run automated tests:
+```bash
+pytest tests/
+```
+
+---
+
+## 💡 Why this is GOATed
+
+1. **Local Logic, Cloud Compute**: Complex state machines, tool routing, and cyclical debate loops run effortlessly on your local CPU while ultra-fast cloud LLMs (like Groq LLaMA 3.3 70B) handle high-throughput GPU inference.
+2. **Zero-Friction Live Search**: Built-in DuckDuckGo engine requires no paid search subscriptions.
+3. **Multi-Perspective Debates**: Avoids single-model bias by forcing an internal Advocate vs. Skeptic debate before generating the report.
+4. **Autonomous Peer Review**: Reviewer agent audits the output, scores factual depth, and automatically requests revisions when necessary.

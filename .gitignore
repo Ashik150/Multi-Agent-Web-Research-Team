@@ -1,10 +1,18 @@
-# Environment
+# Python
 .env
 .venv/
 __pycache__/
 *.pyc
 *.pyo
 *.pyd
+
+# Node / Frontend
+frontend/node_modules/
+frontend/.vite/
+frontend/dist/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
 
 # Build / dist
 dist/
@@ -16,19 +24,19 @@ build/
 .idea/
 *.swp
 
-# Data / caches
+# Vector DB / Caches
 *.db
 *.sqlite
 chroma_db/
 faiss_index/
 .cache/
 
+# Generated Research Reports
+report_*.md
+
 # Logs
 *.log
 logs/
-
-# Notebooks checkpoints
-.ipynb_checkpoints/
 
 # OS
 .DS_Store
