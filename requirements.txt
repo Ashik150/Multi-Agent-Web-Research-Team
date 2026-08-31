@@ -1,0 +1,36 @@
+# ── Core AI / LLM ─────────────────────────────────────────────────────────────
+langchain>=0.2.0
+langchain-community>=0.2.0
+langchain-openai>=0.1.0
+langgraph>=0.1.0
+
+# ── LLM Providers ─────────────────────────────────────────────────────────────
+openai>=1.30.0
+anthropic>=0.28.0
+google-generativeai>=0.7.0
+
+# ── Web / Search Tools ────────────────────────────────────────────────────────
+tavily-python>=0.3.0        # web search API used by LangGraph agents
+duckduckgo-search>=6.1.0
+requests>=2.32.0
+httpx>=0.27.0
+beautifulsoup4>=4.12.0
+lxml>=5.2.0
+
+# ── Vector Store / Embeddings ─────────────────────────────────────────────────
+faiss-cpu>=1.8.0
+chromadb>=0.5.0
+
+# ── Data & Utilities ──────────────────────────────────────────────────────────
+python-dotenv>=1.0.0        # load .env files
+pydantic>=2.7.0             # data validation
+tenacity>=8.3.0             # retry logic
+rich>=13.7.0                # pretty terminal output
+loguru>=0.7.2               # structured logging
+
+# ── Dev / Testing ─────────────────────────────────────────────────────────────
+pytest>=8.2.0
+pytest-asyncio>=0.23.0
+black>=24.4.0
+ruff>=0.4.0
+ipykernel>=6.29.0           # Jupyter notebook support
